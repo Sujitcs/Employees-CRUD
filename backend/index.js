@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const CrudModel = require('./model/Crud.js');
 // const db='mongodb+srv://sujitcs:sujitcs@cluster0.qxw3vj3.mongodb.net/empcrud'
-const DBHOST = process.env.DBHOST;
+const PORT = process.env.PORT || 8080;
 
 mongoose.connect(DBHOST)
     .then(() => {
