@@ -74,12 +74,13 @@ const DataTable1 = () => {
         setEditId(_id);
         setIsFormVisible(true);
     };
+    const url="https://employees-backendapi.vercel.app/";
 
     const handleDelete = (row) => {
         const { _id } = row;
 
         if (window.confirm('Are you sure you want to delete this item?')) {
-            axios.delete(`http://localhost:8000/del/${_id}`)
+            axios.delete(`${url}/del/${_id}`)
                 .then(result => {
                     console.log(result);
                     fetchData();
@@ -107,7 +108,7 @@ const DataTable1 = () => {
         const payload = { name, email, address, phone };
 
         if (editId) {
-            axios.put(`http://localhost:8000/edit/${editId}`, payload)
+            axios.put(`${url}/edit/${editId}`, payload)
                 .then(result => {
                     console.log(result.data);
                     fetchData();
@@ -119,7 +120,7 @@ const DataTable1 = () => {
                     alert("Error updating record. Please try again later.");
                 });
         } else {
-            axios.post('http://localhost:8000/add', payload)
+            axios.post(`${url}/add`, payload)
                 .then(result => {
                     console.log(result);
                     fetchData();
@@ -133,7 +134,7 @@ const DataTable1 = () => {
     };
 
     const fetchData = () => {
-        axios.get('http://localhost:8000/list')
+        axios.get(`${url}/list`)
             .then(result => setAllData(result.data))
             .catch(err => console.log(err));
     };
@@ -150,7 +151,7 @@ const DataTable1 = () => {
 
         if (window.confirm('Are you sure you want to delete selected item(s)?')) {
             selectedIds.forEach(itemId => {
-                axios.delete(`http://localhost:8000/del/${itemId}`)
+                axios.delete(`${url}/del/${itemId}`)
                     .then(result => {
                         console.log(result);
                         fetchData();
