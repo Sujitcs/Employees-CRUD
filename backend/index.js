@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
+import dotenv from "dotenv";
+dotenv.config();
 
 const CrudModel = require('./model/Crud.js');
 // const db='mongodb+srv://sujitcs:sujitcs@cluster0.qxw3vj3.mongodb.net/empcrud'
@@ -17,7 +18,11 @@ mongoose.connect(DBHOST)
 const PORT =process.env.PORT || 8000;
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: {"https://employees-backendapi.vercel.app"},
+    methods: {"POST", "GET", "DELETE", "PUT"},
+    credentials: true
+  }));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static('public'));
