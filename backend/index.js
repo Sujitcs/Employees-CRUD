@@ -1,12 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-import dotenv from "dotenv";
-dotenv.config();
+require('dotenv').config();
 
 const CrudModel = require('./model/Crud.js');
 // const db='mongodb+srv://sujitcs:sujitcs@cluster0.qxw3vj3.mongodb.net/empcrud'
-const PORT = process.env.PORT || 8080;
+const DBHOST = process.env.DBHOST;
 
 mongoose.connect(DBHOST)
     .then(() => {
@@ -18,11 +17,7 @@ mongoose.connect(DBHOST)
 const PORT =process.env.PORT || 8000;
 
 const app = express();
-app.use(cors({
-    origin: {"https://employees-backendapi.vercel.app"},
-    methods: {"POST", "GET", "DELETE", "PUT"},
-    credentials: true
-  }));
+app.use(cors());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static('public'));
@@ -34,13 +29,13 @@ app.get('/',(req, res)=>{
 
 //adding the data using POST api
 
-app.post('/add',(req,res)=>{
+app.post('/add',async(req,res)=>{
     const name = req.body.name;
     const email = req.body.email;
     const address = req.body.address;
     const phone = req.body.phone;
 
-    CrudModel.create({
+     await CrudModel.create({
         name:name,
         email:email,
         address:address,
@@ -51,24 +46,24 @@ app.post('/add',(req,res)=>{
 });
 
 //get api to show all the data 
-app.get('/list',(req,res)=>{
-        CrudModel.find()
+app.get('/list',async(req,res)=>{
+      await CrudModel.find()
         .then(result => res.json(result))
         .catch(err => res.json(err))
 });
 
 // put api to edit the data 
-app.put('/edit/:id/',(req,res)=>{
-    CrudModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
+app.put('/edit/:id/',async(req,res)=>{
+  await CrudModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
              .then(result => res.json(result))
              .catch(err => res.json(err))
 })
 
 //Delete api to delete a data by its id
 
-app.delete('/del/:id',(req,res)=>{
+app.delete('/del/:id',async(req,res)=>{
     const {id} = req.params;
-    CrudModel.findByIdAndDelete({_id:id})
+    await CrudModel.findByIdAndDelete({_id:id})
              .then(result => res.json(result))
              .catch(err => res.json(err))
 })
