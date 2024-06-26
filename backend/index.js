@@ -1,13 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 
 const CrudModel = require('./model/Crud.js');
-const db='mongodb+srv://sujitcs:sujitcs@cluster0.qxw3vj3.mongodb.net/empcrud'
-mongoose.connect(db)
-.then(()=>console.log('connected to mongodb'));
+// const db='mongodb+srv://sujitcs:sujitcs@cluster0.qxw3vj3.mongodb.net/empcrud'
+const DBHOST = process.env.DBHOST;
 
-const port = 8000;
+mongoose.connect(DBHOST)
+    .then(() => {
+        console.log('MongoDB Connnected...')
+    }).catch((err) => {
+        console.log('Error while Mongo Conn..', err);
+    })
+
+const PORT =process.env.PORT || 8000;
 
 const app = express();
 app.use(cors());
@@ -61,6 +68,6 @@ app.delete('/del/:id',(req,res)=>{
              .catch(err => res.json(err))
 })
 
-app.listen(port,()=>{
-    console.log(`server is running ${port}`);
+app.listen(PORT,()=>{
+    console.log(`server is running ${PORT}`);
 });
