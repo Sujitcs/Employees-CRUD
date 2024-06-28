@@ -51,7 +51,12 @@ app.get('/list',async(req,res)=>{
         .then(result => res.json(result))
         .catch(err => res.json(err))
 });
-
+//get api to show one data
+app.get('/list/:id',async(req,res)=>{
+    await CrudModel.findById(req.params.id)
+      .then(result => res.json(result))
+      .catch(err => res.json(err))
+});
 // put api to edit the data 
 app.put('/edit/:id/',async(req,res)=>{
   await CrudModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
