@@ -4,7 +4,6 @@ const cors = require('cors');
 require('dotenv').config();
 
 const CrudModel = require('./model/Crud.js');
-// const db='mongodb+srv://sujitcs:sujitcs@cluster0.qxw3vj3.mongodb.net/empcrud'
 const DBHOST = process.env.DBHOST;
 
 mongoose.connect(DBHOST)
