@@ -74,7 +74,7 @@ const DataTable1 = () => {
         setEditId(_id);
         setIsFormVisible(true);
     };
-    const url="https://employees-backendapi.vercel.app/";
+    const url="https://employees-backendapi.vercel.app";
 
     const handleDelete = (row) => {
         const { _id } = row;
@@ -134,7 +134,7 @@ const DataTable1 = () => {
     };
 
     const fetchData = () => {
-        axios.get('https://employees-backendapi.vercel.app/list')
+        axios.get(`${url}/list`)
             .then(result => setAllData(result.data))
             .catch(err => console.log(err));
     };
