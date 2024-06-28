@@ -199,7 +199,7 @@ const DataTable1 = () => {
                         <label><b>Email:</b></label>
                         <input type="text" name='email' value={email} onChange={(e) => setEmail(e.target.value)} /> <br />
                         <label><b>Phone:</b></label>
-                        <input type="text" name='phone' value={phone} onChange={(e) => setPhone(e.target.value)} /> <br />
+                        <input type="text" name='phone' value={phone} pattern="[1-9]{1}[0-9]{9}" onChange={(e) => setPhone(e.target.value)} /> <br />
                         <label><b>Address:</b></label>
                         <textarea name="address" cols="23" rows="2" value={address} onChange={(e) => setAddress(e.target.value)}></textarea>
                         <br />
