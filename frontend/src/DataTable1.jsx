@@ -134,7 +134,7 @@ const DataTable1 = () => {
     };
 
     const fetchData = () => {
-        axios.get(`${url}/list`)
+        axios.get('https://employees-backendapi.vercel.app/list')
             .then(result => setAllData(result.data))
             .catch(err => console.log(err));
     };
