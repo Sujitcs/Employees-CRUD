@@ -4,6 +4,9 @@ https://employees-frontendapi.vercel.app/
 
 all user details in backend---- 
 https://employees-backendapi.vercel.app/list/
+
+individual id check-- 
+https://employees-backendapi.vercel.app/list/<put_user_id>
 ![i](https://github.com/Sujitcs/Employees-CRUD/assets/132594980/8ee4e118-1aef-42e3-b3f9-0d375d4c650f)
 ![b](https://github.com/Sujitcs/Employees-CRUD/assets/132594980/b3821740-0a18-4575-81aa-b3558c4d4423)
 ![c](https://github.com/Sujitcs/Employees-CRUD/assets/132594980/c05f5221-c712-4443-9ba0-188aa5c39d54)
